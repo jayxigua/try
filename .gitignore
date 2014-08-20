@@ -10,3 +10,4 @@
 .classpath
 /.settings
 *.iml
+*/.settings
