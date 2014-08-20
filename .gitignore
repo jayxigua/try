@@ -1,0 +1,12 @@
+.metadata
+*.log
+.DS_Store
+*.class
+*.jar
+/bin
+/target
+.eclipse
+.project
+.classpath
+/.settings
+*.iml
