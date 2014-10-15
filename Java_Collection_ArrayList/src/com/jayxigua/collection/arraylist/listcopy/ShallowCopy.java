@@ -64,8 +64,8 @@ public class ShallowCopy {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// constructorCopy();
-		// addAllCopy();
+		constructorCopy();
+		addAllCopy();
 		CollectionsCopy();
 	}
 }
