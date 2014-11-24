@@ -1,10 +1,10 @@
 package com.jayxigua.Apache_Basic;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -12,15 +12,11 @@ import org.apache.http.impl.client.HttpClients;
 
 public class ClientConnectionRelease {
 
-	/**
-	 * This example demonstrates the recommended way of using API to make sure
-	 * the underlying connection gets released back to the connection manager.
-	 */
+	public static void access() throws ClientProtocolException, IOException {
 
-	public final static void main(String[] args) throws Exception {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
-			HttpGet httpget = new HttpGet("http://hc.apache.org/httpcomponents-client-4.3.x/quickstart.html");
+			HttpGet httpget = new HttpGet("http://192.168.8.70:8041/index.jsp");
 
 			System.out.println("Executing request " + httpget.getRequestLine());
 			CloseableHttpResponse response = httpclient.execute(httpget);
@@ -55,6 +51,22 @@ public class ClientConnectionRelease {
 		} finally {
 			httpclient.close();
 		}
+
 	}
 
+	public static void main(String[] args) throws Exception {
+
+		for (int i = 1; i <= 100; i++) {
+			try {
+
+				long begin = System.currentTimeMillis();
+				access();
+				System.out.println("index =" + i + " , cost " + (System.currentTimeMillis() - begin) + " ms");
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("finished");
+	}
 }
